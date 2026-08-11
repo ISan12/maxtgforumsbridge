@@ -58,8 +58,12 @@ pip install -r requirements.txt
 3. Переименуйте `.env.example` в `.env` и заполните его:
 ```env
 MAX_PHONE=+70000000000
-TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_BOT_TOKEN=
 TELEGRAM_FORUM_CHAT_ID=-1000000000000
+MAX_WORK_DIR=data/max
+MAX_SESSION_NAME=account.db
+DB_PATH=data/bridge.sqlite3
+LOG_LEVEL=INFO
 ```
 
 4. Запустите:
