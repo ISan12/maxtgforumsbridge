@@ -48,22 +48,26 @@ api может измениться без предупреждения, и, в�
 
 ## Установка
 
-Python 3.11+ рекомендуется.
+1. Установите **Python 3.10 или новее**. [Python](https://www.python.org/downloads/?utm_source=chatgpt.com)
 
-    python -m venv .venv
-    # Windows:
-    .venv\Scripts\activate
-    # Linux:
-    source .venv/bin/activate
+2. Установите зависимости:
+```bash
+pip install -r requirements.txt
+```
 
-    pip install -r requirements.txt
+3. Переименуйте `.env.example` в `.env` и заполните его:
+```env
+MAX_PHONE=+70000000000
+TELEGRAM_BOT_TOKEN=your_bot_token
+TELEGRAM_FORUM_CHAT_ID=-1000000000000
+```
 
-Создай `.env`:
+4. Запустите:
+```bash
+python -m app
+```
 
-    MAX_PHONE=+70000000000
-    TELEGRAM_BOT_TOKEN=token
-    TELEGRAM_FORUM_CHAT_ID=-0000000000000
-    DB_PATH=data/bridge.sqlite3
+При первом запуске потребуется ввести SMS-код для входа в MAX. Сессия сохранится автоматически.
 
 ## Подготовка бота в Telegram
 тебе с этим действительно нужна помощь?
