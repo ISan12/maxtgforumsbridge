@@ -1,4 +1,5 @@
 (!! vibecode warning, я все ещё плох в написании кода, так что, не обессудьте)
+![иконка](media/favicon.png)
 # maxtgforumsbridge
 Мост между аккаунтом макс и форумом Telegram.
 
