@@ -1,7 +1,9 @@
-![иконка](media/favicon.png)
-<h1 align="center">(!! vibecode warning, я все ещё плох в написании кода, так что, не обессудьте)</h1>
-<h1 align="center">maxtgforumsbridge</h1>
-Мост между аккаунтом макс и форумом Telegram.
+<p align="center">
+  <img src="path/to/icon.png" width="120" alt="logo"><br><br>
+  <i>(! vibecode warning, я все ещё плох в написании кода, так что, не обессудьте)</i>
+</p>
+<h2 align="center">maxtgforumsbridge</h2>
+<h2 align="center">Мост между аккаунтом макс и форумом Telegram.</h2>
 
 Идея проекта — использовать Telegram Forum как интерфейс для общения с пользователями в максе.
 Эта идея витала в моей голове ещё давно, но руки никак не доходили для создания этого проекта,
