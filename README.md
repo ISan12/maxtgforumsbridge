@@ -75,5 +75,6 @@ Python 3.11+ рекомендуется.
 
 <p align="center">
   <i>powered by isanru</i>
+  <br>
   <i><3</i>
 </p>
