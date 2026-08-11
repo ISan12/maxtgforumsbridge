@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="path/to/icon.png" width="120" alt="logo"><br><br>
+  <img src="media/favicon.png" width="120" alt="logo"><br><br>
   <i>(! vibecode warning, я все ещё плох в написании кода, так что, не обессудьте)</i>
 </p>
 <h2 align="center">maxtgforumsbridge</h2>
