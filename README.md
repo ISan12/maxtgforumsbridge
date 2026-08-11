@@ -25,22 +25,6 @@ api может измениться без предупреждения, и, в�
 - 🔄 Работает в обе стороны
 - 💾 Запоминает соответствие чатов и тем после перезапуска
 
-## Архитектура
-
-    MAX account
-        |
-        v
-    PyMax 2.x
-        |
-        v
-    Bridge / SQLite
-        |
-        v
-    Telegram Bot API
-        |
-        v
-    Telegram Forum
-
 ## Установка
 
 1. Установите **Python 3.10 или новее**. [Python](https://www.python.org/downloads/?utm_source=chatgpt.com)
