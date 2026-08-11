@@ -1,6 +1,6 @@
-(!! vibecode warning, я все ещё плох в написании кода, так что, не обессудьте)
 ![иконка](media/favicon.png)
-# maxtgforumsbridge
+<h1 align="center">(!! vibecode warning, я все ещё плох в написании кода, так что, не обессудьте)</h1>
+<h1 align="center">maxtgforumsbridge</h1>
 Мост между аккаунтом макс и форумом Telegram.
 
 Идея проекта — использовать Telegram Forum как интерфейс для общения с пользователями в максе.
