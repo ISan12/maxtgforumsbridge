@@ -68,11 +68,8 @@ Python 3.11+ рекомендуется.
 ## Подготовка бота в Telegram
 тебе с этим действительно нужна помощь?
 
-## Важное
-В этом проекте я использую готовые решения,
-а именно **PyMax**.
-
-Отдельная благодарность [ink-developer](https://github.com/ink-developer) и [noxzion](https://github.com/noxzion), а также всем
+## Благодарности
+Огромное спасибо [ink-developer](https://github.com/ink-developer) и [noxzion](https://github.com/noxzion), а также всем
 контрибьюторам за разработку и поддержку неофициального API макса. 
 
 <3
