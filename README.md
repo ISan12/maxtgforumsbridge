@@ -73,6 +73,7 @@ python -m app
 
 ## Благодарности
 Огромное спасибо [ink-developer](https://github.com/ink-developer) и [noxzion](https://github.com/noxzion), а также контрибьюторам за разработку и поддержку неофициального API макса.<br>
+Спасибо [Rafcha](https://github.com/rafcha) за добавление поддержки прокси для бота
 А также отдельная благодарность вам за использование этого проекта.
 
 <p align="center">
