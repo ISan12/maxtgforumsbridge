@@ -55,6 +55,10 @@ MAX_WORK_DIR=data/max
 MAX_SESSION_NAME=account.db
 DB_PATH=data/bridge.sqlite3
 LOG_LEVEL=INFO
+
+# Необязательно: прокси для Telegram Bot API.
+# Например: socks5://user:pass@host:port или http://host:port
+TELEGRAM_PROXY=
 ```
 
 4. Запустите:
