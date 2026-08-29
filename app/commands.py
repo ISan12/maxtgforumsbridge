@@ -1,5 +1,7 @@
 import logging
 
+from pymax.exceptions import PyMaxError
+
 from .formatting import delivered_notice, help_text, send_notice, status_text
 from html import escape
 
@@ -70,7 +72,10 @@ class Commands:
         phone, text = parts[1], parts[2]
 
         try:
-            user = await self.max.search_by_phone(phone)
+            try:
+                user = await self.max.search_by_phone(phone)
+            except PyMaxError:
+                user = None
 
             if user is None:
                 await message.answer(

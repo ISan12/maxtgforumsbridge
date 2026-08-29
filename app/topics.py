@@ -1,3 +1,6 @@
+import asyncio
+from collections import defaultdict
+
 from .formatting import service_title
 
 
@@ -6,6 +9,7 @@ class TopicManager:
         self.bot = bot
         self.db = db
         self.forum_id = forum_id
+        self._locks = defaultdict(asyncio.Lock)
 
     async def service_topic(self):
         saved = await self.db.get_meta("service_topic_id")
@@ -30,20 +34,29 @@ class TopicManager:
         if row:
             return row[0], row[1]
 
-        topic = await self.bot.create_forum_topic(
-            chat_id=self.forum_id,
-            name=(title or f"MAX {max_chat_id}")[:128],
-        )
+        # Without this lock, several messages arriving for the same new
+        # MAX chat at nearly the same time could all miss the check above
+        # and each create their own Telegram topic.
+        async with self._locks[max_chat_id]:
+            row = await self.db.get_topic(max_chat_id)
 
-        await self.db.save_topic(
-            max_chat_id,
-            self.forum_id,
-            topic.message_thread_id,
-            (title or f"MAX {max_chat_id}")[:128],
-            is_group,
-        )
+            if row:
+                return row[0], row[1]
 
-        return self.forum_id, topic.message_thread_id
+            topic = await self.bot.create_forum_topic(
+                chat_id=self.forum_id,
+                name=(title or f"MAX {max_chat_id}")[:128],
+            )
+
+            await self.db.save_topic(
+                max_chat_id,
+                self.forum_id,
+                topic.message_thread_id,
+                (title or f"MAX {max_chat_id}")[:128],
+                is_group,
+            )
+
+            return self.forum_id, topic.message_thread_id
 
     async def service_message(self, text):
         thread = await self.service_topic()

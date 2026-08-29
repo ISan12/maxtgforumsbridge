@@ -1,6 +1,8 @@
 import logging
 
-from .formatting import attachment_notice, chat_message
+from pymax.types.domain.enums import ChatType
+
+from .formatting import attachment_notice, chat_message, to_max_message
 
 log = logging.getLogger(__name__)
 
@@ -15,14 +17,37 @@ class Bridge:
 
     @staticmethod
     def max_reply_id(message):
-        for name in ("reply_to", "reply_to_message", "reply_message"):
+        # pymax's Message model has no dedicated "reply" field. On the
+        # outgoing side pymax sends replies as {"link": {"type": "REPLY",
+        # "messageId": ...}}, so incoming replies are expected to carry the
+        # same "link" key (kept verbatim as an extra field thanks to
+        # CamelModel's extra="allow"). We also keep the old attribute names
+        # as a fallback in case a future pymax version exposes them directly.
+        for name in ("link", "reply_to", "reply_to_message", "reply_message"):
             value = getattr(message, name, None)
+
+            if value is None:
+                continue
 
             if isinstance(value, int):
                 return value
 
-            if value is not None and getattr(value, "id", None) is not None:
+            if isinstance(value, dict):
+                mid = (
+                    value.get("messageId")
+                    or value.get("message_id")
+                    or value.get("id")
+                )
+                if isinstance(mid, int):
+                    return mid
+                continue
+
+            if getattr(value, "id", None) is not None:
                 return value.id
+
+            mid = getattr(value, "message_id", None)
+            if isinstance(mid, int):
+                return mid
 
         return None
 
@@ -42,7 +67,7 @@ class Bridge:
             if chat is None:
                 return
 
-            is_group = bool(getattr(chat, "is_group", False))
+            is_group = getattr(chat, "type", None) != ChatType.DIALOG
             title = (
                 getattr(chat, "title", None)
                 or await self.max.user_name(message.sender)
@@ -178,7 +203,7 @@ class Bridge:
 
                 text = "📎 Медиа из Telegram"
 
-            outgoing = chat_message(sender, text, True)
+            outgoing = to_max_message(sender, text)
 
             sent = await self.max.send_text(
                 max_chat_id,

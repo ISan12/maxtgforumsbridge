@@ -15,6 +15,13 @@ def chat_message(name: str, text: str, is_group: bool = False) -> str:
     return text
 
 
+def to_max_message(name: str, text: str) -> str:
+    # Messages going TO MAX must be plain text: MAX does not interpret the
+    # HTML markup used for Telegram's parse_mode=HTML, so tags/entities
+    # would otherwise show up literally (e.g. "<b>", "&amp;").
+    return f"{name}:\n{text}"
+
+
 def startup() -> str:
     return (
         "🟢 <b>maxtgforumsbridge запущен</b>\n\n"

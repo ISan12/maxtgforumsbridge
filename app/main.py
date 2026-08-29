@@ -29,6 +29,7 @@ async def main():
     async def all_messages(message):
         if (message.text or "").startswith("/"):
             await commands.dispatch(message)
+            return
         await bridge.telegram_to_max(message)
 
     # Critical: MAX auth is completed before Telegram polling starts.
